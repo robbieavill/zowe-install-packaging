@@ -60,7 +60,7 @@
       "explode": "true"
     },
     "org.zowe.explorer.data.sets": {
-      "version": "~1.0.0-STAGING",
+      "version": "1.0.1-USERS-JORDAN-CUSTOM-DEBUG-BUILD",
       "explode": "true"
     },
     "org.zowe.explorer-jes": {
