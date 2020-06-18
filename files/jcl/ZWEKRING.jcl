@@ -179,22 +179,22 @@
 /* ................................................................. */
 /* Option 2 - BEGINNING ............................................ */
 /* Create a certificate signed by local zowe's CA .................. */
-/* RACDCERT GENCERT ID(&ZOWEUSER.) +
-/*          SUBJECTSDN( +
-/*            CN('&CN. certificate') +
-/*            OU('&OU.') +
-/*            O('&O.') +
-/*            L('&L.') +
-/*            SP('&SP.') +
-/*            C('&C.')) +
-/*          SIZE(2048) +
-/*          NOTAFTER(DATE(2030-05-01)) +
-/*          WITHLABEL('&LABEL.') +
-/*          KEYUSAGE(HANDSHAKE) +
-/*          ALTNAME(IP(127.0.0.1) +
-/*            DOMAIN('localhost')) +
-/*          SIGNWITH(CERTAUTH LABEL('localca'))
-/* SETROPTS RACLIST(DIGTCERT) REFRESH
+   RACDCERT GENCERT ID(&ZOWEUSER.) +
+            SUBJECTSDN( +
+              CN('&CN. certificate') +
+              OU('&OU.') +
+              O('&O.') +
+              L('&L.') +
+              SP('&SP.') +
+              C('&C.')) +
+            SIZE(2048) +
+            NOTAFTER(DATE(2030-05-01)) +
+            WITHLABEL('&LABEL.') +
+            KEYUSAGE(HANDSHAKE) +
+            ALTNAME(IP(127.0.0.1) +
+              DOMAIN('localhost')) +
+            SIGNWITH(CERTAUTH LABEL('localca'))
+   SETROPTS RACLIST(DIGTCERT) REFRESH
 
 /* Option 2 - END .................................................. */
 
@@ -325,20 +325,20 @@ ACF
 * ................................................................. */
 * Option 2 - BEGINNING ............................................ */
 * Create a certificate signed by local zowe's CA .................. */
-*  SET PROFILE(USER) DIV(CERTDATA)
-*  GENCERT &ZOWEUSER..ZOWECERT      +
-*           SUBJSDN(CN='&CN. certificate' +
-*                   OU='&OU.'       +
-*                    O='&O.'        +
-*                    L='&L.'        +
-*                   SP='&SP.'       +
-*                   C='&C.')        +
-*          SIZE(2048)               +
-*          EXPIRE(05/01/30)         +
-*          LABEL(&LABEL.)         +
-*          KEYUSAGE(HANDSHAKE)    +
-*          ALTNAME(IP=127.0.0.1 DOMAIN='localhost') +
-*          SIGNWITH(CERTAUTH.ZOWECA)
+   SET PROFILE(USER) DIV(CERTDATA)
+   GENCERT &ZOWEUSER..ZOWECERT      +
+            SUBJSDN(CN='&CN. certificate' +
+                    OU='&OU.'       +
+                     O='&O.'        +
+                     L='&L.'        +
+                    SP='&SP.'       +
+                    C='&C.')        +
+           SIZE(2048)               +
+           EXPIRE(05/01/30)         +
+           LABEL(&LABEL.)         +
+           KEYUSAGE(HANDSHAKE)    +
+           ALTNAME(IP=127.0.0.1 DOMAIN='localhost') +
+           SIGNWITH(CERTAUTH.ZOWECA)
 
 * Option 2 - END ................................................... */
 
@@ -463,21 +463,21 @@ $$
 /* ................................................................. */
 /* Option 2 - BEGINNING ............................................ */
 /* Create a certificate signed by local zowe's CA .................. */
-/*  TSS GENCERT(&ZOWEUSER.) +
-/*      DIGICERT(ZOWECERT) +
-/*      SUBJECTN( +
-/*        'CN="&CN. certificate" +
-/*        OU="&OU." +
-/*        O="&O." +
-/*        L="&L." +
-/*        SP="&SP." +
-/*        C="&C." ') +
-/*      KEYSIZE(2048) +
-/*      NADATE(05/01/30) +
-/*      LABLCERT(&LABEL.) +
-/*      KEYUSAGE('HANDSHAKE') +
-/*      ALTNAME('DOMAIN=localhost') +
-/*      SIGNWITH(CERTAUTH,ZOWECA)
+    TSS GENCERT(&ZOWEUSER.) +
+        DIGICERT(ZOWECERT) +
+        SUBJECTN( +
+          'CN="&CN. certificate" +
+          OU="&OU." +
+          O="&O." +
+          L="&L." +
+          SP="&SP." +
+          C="&C." ') +
+        KEYSIZE(2048) +
+        NADATE(05/01/30) +
+        LABLCERT(&LABEL.) +
+        KEYUSAGE('HANDSHAKE') +
+        ALTNAME('DOMAIN=localhost') +
+        SIGNWITH(CERTAUTH,ZOWECA)
 
 /* Option 2 - END .................................................. */
 
