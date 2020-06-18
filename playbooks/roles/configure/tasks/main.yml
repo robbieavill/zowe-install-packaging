@@ -74,3 +74,9 @@
 - import_role:
     name: configure
     tasks_from: configure_instance
+
+# ============================================================================
+# Run ZWEKRING JCL
+- import_role:
+    name: configure
+    tasks_from: run_zwekring

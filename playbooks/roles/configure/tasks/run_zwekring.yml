@@ -1,0 +1,43 @@
+---
+# this playbook runs SZWESAMP(ZWEKRING)
+- name: Remove ZWEKRING.jcl or ZWEKRING.raw.jcl if exists
+  raw: >-
+    rm -f "{{ work_dir_remote }}/ZWEKRING.raw.jcl";
+    rm -f "{{ work_dir_remote }}/ZWEKRING.jcl"
+
+- name: Copy SZWESAMP(ZWEKRING) to USS
+  raw: cp "//'{{ zowe_dataset_prefix }}.SZWESAMP(ZWEKRING)'" "{{ work_dir_remote }}/ZWEKRING.raw.jcl"
+
+# FIXME: Option 2 is enabled by default
+- name: Update ZWEKRING.jcl with configurations
+  raw: >-
+    cat "{{ work_dir_remote }}/ZWEKRING.raw.jcl" | \
+    sed -e "s+PRODUCT=RACF+PRODUCT={{ zos_security_system }}+" | \
+    sed -e "s+ZOWEUSER=ZWESVUSR+ZOWEUSER={{ zowe_runtime_user }}+" | \
+    sed -e "s+LABEL=''+LABEL='{{ zowe_safkeyring_certificate_label }}'+" | \
+    sed -e "s+ROOTZFCA=+ROOTZFCA='{{ zowe_safkeyring_zosmf_root_ca }}'+" \
+    > "{{ work_dir_remote }}/ZWEKRING.jcl"
+
+- name: Check ZWEKRING.jcl changes
+  raw: cat "{{ work_dir_remote }}/ZWEKRING.jcl"
+
+- name: Uninstall previous installation
+  raw: >-
+    "{{ work_dir_remote }}/opercmd.rexx" "RACDCERT DELRING(ZoweKeyring) ID({{ zowe_runtime_user }})"
+    "{{ work_dir_remote }}/opercmd.rexx" "RACDCERT DELETE(label('jwtsecret')) ID({{ zowe_runtime_user }})"
+    "{{ work_dir_remote }}/opercmd.rexx" "RACDCERT DELETE(label('localca')) CERTAUTH"
+    "{{ work_dir_remote }}/opercmd.rexx" "RACDCERT ID(ZWESVUSR) DELETE(LABEL('{{ zowe_safkeyring_certificate_label }}'))"
+    "{{ work_dir_remote }}/opercmd.rexx" "SETROPTS RACLIST(DIGTCERT, DIGTRING) REFRESH"
+  ignore_errors: True
+
+- name: Run ZWEKRING.jcl
+  import_role:
+    name: zos
+    tasks_from: run_jcl
+  vars:
+    jcl_filename: "{{ work_dir_remote }}/ZWEKRING.jcl"
+
+- name: Remove ZWEKRING.jcl or ZWEKRING.raw.jcl if exists
+  raw: >-
+    rm -f "{{ work_dir_remote }}/ZWEKRING.raw.jcl";
+    rm -f "{{ work_dir_remote }}/ZWEKRING.jcl"

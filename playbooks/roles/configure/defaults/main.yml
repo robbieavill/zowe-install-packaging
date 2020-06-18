@@ -12,6 +12,8 @@ zowe_known_xmem_proc_stcs:
 # ==============================================================================
 # Variables should be verified and overwrittern.
 # ==============================================================================
+# Security system of this z/OS server, acceptable values are: RACF, ACF2, TSS
+zos_security_system: RACF
 # temporary folder on remote
 work_dir_remote:
 # default zowe runtime root directory
@@ -58,6 +60,8 @@ zowe_proclib_membername: ZWESVSTC
 zowe_runtime_user: ZWESVUSR
 zowe_runtime_group: ZWEADMIN
 zowe_auto_create_user_group: false
+zowe_safkeyring_certificate_label: ZOWE
+zowe_safkeyring_zosmf_root_ca: zOSMFCA
 
 ################################################################################
 # these are default variables for cross memory configuration
