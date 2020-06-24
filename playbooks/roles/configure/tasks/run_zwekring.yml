@@ -26,7 +26,7 @@
   raw: >-
     cat >"{{ work_dir_remote }}/ZWEDELKR.jcl" <<EOF
        //ZWEDELKR JOB
-       //
+       //*
        //RUN      EXEC PGM=IKJEFT01,REGION=0M
        //SYSTSPRT DD SYSOUT=*
        //SYSTSIN  DD *
