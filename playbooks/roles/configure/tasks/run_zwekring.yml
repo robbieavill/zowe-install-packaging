@@ -22,23 +22,27 @@
 - name: Check ZWEKRING.jcl changes
   raw: cat "{{ work_dir_remote }}/ZWEKRING.jcl"
 
-- name: Check keyring-util presence
-  raw: ls -la "{{ zowe_root_dir }}/bin/utils/keyring-util"
-
 - name: Uninstall previous installation
   raw: >-
-    echo "{{ zowe_root_dir }}/bin/utils/keyring-util/keyring-util" delcert "{{ zowe_runtime_user }}" ZoweKeyring "{{ zowe_safkeyring_certificate_label }}";
-    echo "{{ zowe_root_dir }}/bin/utils/keyring-util/keyring-util" delcert "{{ zowe_runtime_user }}" "'*'" "{{ zowe_safkeyring_certificate_label }}";
-    echo "{{ zowe_root_dir }}/bin/utils/keyring-util/keyring-util" "refresh";
-    "{{ zowe_root_dir }}/bin/utils/keyring-util/keyring-util" "refresh";
-    "{{ zowe_root_dir }}/bin/utils/keyring-util/keyring-util" delcert "{{ zowe_runtime_user }}"  ZoweKeyring "'{{ zowe_safkeyring_certificate_label }}'";
-    "{{ zowe_root_dir }}/bin/utils/keyring-util/keyring-util" delcert "{{ zowe_runtime_user }}" "'*'" "{{ zowe_safkeyring_certificate_label }}"
-#    "{{ work_dir_remote }}/opercmd.rexx" "RACDCERT DELRING(ZoweKeyring) ID({{ zowe_runtime_user }})"
-#    "{{ work_dir_remote }}/opercmd.rexx" "RACDCERT DELETE(label('jwtsecret')) ID({{ zowe_runtime_user }})"
-#    "{{ work_dir_remote }}/opercmd.rexx" "RACDCERT DELETE(label('localca')) CERTAUTH"
-#    "{{ work_dir_remote }}/opercmd.rexx" "RACDCERT ID(ZWESVUSR) DELETE(LABEL('{{ zowe_safkeyring_certificate_label }}'))"
-#    "{{ work_dir_remote }}/opercmd.rexx" "SETROPTS RACLIST(DIGTCERT, DIGTRING) REFRESH"
-  ignore_errors: True
+    cat >"{{ work_dir_remote }}/ZWEDELKR.jcl" <<EOF
+       //ZWEDELKR JOB
+       //
+       //RUN      EXEC PGM=IKJEFT01,REGION=0M
+       //SYSTSPRT DD SYSOUT=*
+       //SYSTSIN  DD *
+        ACF
+         set prof(user) div(certdata)
+         delete ZWESVUSR.ZOWECERT
+        END
+       //*
+    EOF
+
+- name: Run ZWEDELKR.jcl
+  import_role:
+    name: zos
+    tasks_from: run_jcl
+  vars:
+    jcl_filename: "{{ work_dir_remote }}/ZWEDELKR.jcl"
 
 - name: Run ZWEKRING.jcl
   import_role:
@@ -49,5 +53,6 @@
 
 - name: Remove ZWEKRING.jcl or ZWEKRING.raw.jcl if exists
   raw: >-
+    rm -f "{{ work_dir_remote }}/ZWEDELKR.jcl";
     rm -f "{{ work_dir_remote }}/ZWEKRING.raw.jcl";
     rm -f "{{ work_dir_remote }}/ZWEKRING.jcl"
