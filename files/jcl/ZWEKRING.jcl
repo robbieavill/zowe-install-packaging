@@ -337,7 +337,7 @@ ACF
            EXPIRE(05/01/30)         +
            LABEL(&LABEL.)         +
            KEYUSAGE(HANDSHAKE)    +
-           ALTNAME(IP=127.0.0.1 DOMAIN='localhost') +
+           ALTNAME(IP=127.0.0.1 DOMAIN=localhost) +
            SIGNWITH(CERTAUTH.ZOWECA)
 
 * Option 2 - END ................................................... */
