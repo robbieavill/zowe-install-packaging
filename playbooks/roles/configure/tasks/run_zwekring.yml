@@ -56,6 +56,5 @@
 
 - name: Remove ZWEKRING.jcl or ZWEKRING.raw.jcl if exists
   raw: >-
-    rm -f "{{ work_dir_remote }}/ZWEDELKR.jcl";
     rm -f "{{ work_dir_remote }}/ZWEKRING.raw.jcl";
     rm -f "{{ work_dir_remote }}/ZWEKRING.jcl"
