@@ -25,17 +25,17 @@
 - name: Uninstall previous installation
   raw: >-
     cat >"{{ work_dir_remote }}/ZWEDELKR.jcl" <<EOF
-       //ZWEDELKR JOB
-       //*
-       //RUN      EXEC PGM=IKJEFT01,REGION=0M
-       //SYSTSPRT DD SYSOUT=*
-       //SYSTSIN  DD *
-        ACF
-         set prof(user) div(certdata)
-         delete ZWESVUSR.ZOWECERT
-        END
-       //*
-    EOF
+//ZWEDELKR JOB
+//*
+//RUN      EXEC PGM=IKJEFT01,REGION=0M
+//SYSTSPRT DD SYSOUT=*
+//SYSTSIN  DD *
+ ACF
+  set prof(user) div(certdata)
+  delete ZWESVUSR.ZOWECERT
+ END
+//*
+EOF
 
 - name: Run ZWEDELKR.jcl
   import_role:
