@@ -1,0 +1,10 @@
+//ZWEDELKR JOB
+//*
+//RUN      EXEC PGM=IKJEFT01,REGION=0M
+//SYSTSPRT DD SYSOUT=*
+//SYSTSIN  DD *
+  ACF
+  set prof(user) div(certdata)
+  delete ZWESVUSR.ZOWECERT
+  END
+//*
