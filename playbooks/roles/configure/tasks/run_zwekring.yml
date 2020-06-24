@@ -37,6 +37,9 @@
     //*
     EOF
 
+- name: Check ZWEKRING.jcl changes
+  raw: cat "{{ work_dir_remote }}/ZWEDELKR.jcl"
+
 - name: Run ZWEDELKR.jcl
   import_role:
     name: zos
