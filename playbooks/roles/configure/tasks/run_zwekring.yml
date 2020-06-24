@@ -16,6 +16,7 @@
     sed -e "s+ZOWEUSER=ZWESVUSR+ZOWEUSER={{ zowe_runtime_user }}+" | \
     sed -e "s+LABEL=''+LABEL='{{ zowe_safkeyring_certificate_label }}'+" | \
     sed -e "s+ROOTZFCA=+ROOTZFCA='{{ zowe_safkeyring_zosmf_root_ca }}'+" \
+    sed -e "s+DOMAIN=localhost+DOMAIN={{ zowe_external_domain_name }}+" \
     > "{{ work_dir_remote }}/ZWEKRING.jcl"
 
 - name: Check ZWEKRING.jcl changes
@@ -23,11 +24,13 @@
 
 - name: Uninstall previous installation
   raw: >-
-    "{{ work_dir_remote }}/opercmd.rexx" "RACDCERT DELRING(ZoweKeyring) ID({{ zowe_runtime_user }})"
-    "{{ work_dir_remote }}/opercmd.rexx" "RACDCERT DELETE(label('jwtsecret')) ID({{ zowe_runtime_user }})"
-    "{{ work_dir_remote }}/opercmd.rexx" "RACDCERT DELETE(label('localca')) CERTAUTH"
-    "{{ work_dir_remote }}/opercmd.rexx" "RACDCERT ID(ZWESVUSR) DELETE(LABEL('{{ zowe_safkeyring_certificate_label }}'))"
-    "{{ work_dir_remote }}/opercmd.rexx" "SETROPTS RACLIST(DIGTCERT, DIGTRING) REFRESH"
+    "{{ zowe_root_dir }}/bin/utils/keyring-util/keyring-util delcert {{ zowe_runtime_user }} ZoweKeyring {{ zowe_safkeyring_certificate_label }}"
+    "{{ zowe_root_dir }}/bin/utils/keyring-util/keyring-util delcert {{ zowe_runtime_user }} "*" {{ zowe_safkeyring_certificate_label }}"
+#    "{{ work_dir_remote }}/opercmd.rexx" "RACDCERT DELRING(ZoweKeyring) ID({{ zowe_runtime_user }})"
+#    "{{ work_dir_remote }}/opercmd.rexx" "RACDCERT DELETE(label('jwtsecret')) ID({{ zowe_runtime_user }})"
+#    "{{ work_dir_remote }}/opercmd.rexx" "RACDCERT DELETE(label('localca')) CERTAUTH"
+#    "{{ work_dir_remote }}/opercmd.rexx" "RACDCERT ID(ZWESVUSR) DELETE(LABEL('{{ zowe_safkeyring_certificate_label }}'))"
+#    "{{ work_dir_remote }}/opercmd.rexx" "SETROPTS RACLIST(DIGTCERT, DIGTRING) REFRESH"
   ignore_errors: True
 
 - name: Run ZWEKRING.jcl
