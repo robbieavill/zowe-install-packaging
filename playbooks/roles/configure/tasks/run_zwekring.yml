@@ -15,7 +15,7 @@
     sed -e "s+PRODUCT=RACF+PRODUCT={{ zos_security_system }}+" | \
     sed -e "s+ZOWEUSER=ZWESVUSR+ZOWEUSER={{ zowe_runtime_user }}+" | \
     sed -e "s+LABEL=''+LABEL='{{ zowe_safkeyring_certificate_label }}'+" | \
-    sed -e "s+ROOTZFCA=+ROOTZFCA='{{ zowe_safkeyring_zosmf_root_ca }}'+" \
+    sed -e "s+ROOTZFCA=+ROOTZFCA='{{ zowe_safkeyring_zosmf_root_ca }}'+" | \
     sed -e "s+DOMAIN=localhost+DOMAIN={{ zowe_external_domain_name }}+" \
     > "{{ work_dir_remote }}/ZWEKRING.jcl"
 
