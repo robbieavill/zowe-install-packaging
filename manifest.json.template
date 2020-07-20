@@ -64,13 +64,13 @@
       "explode": "true"
     },
     "org.zowe.explorer-jes": {
-      "pattern": "libs-snapshot-local/org/zowe/explorer-jes/1.0.2-STAGING/explorer-jes-1.0.2-staging-45-20200624010805.pax"
+      "artifact": "libs-snapshot-local/org/zowe/explorer-jes/1.0.2-STAGING/explorer-jes-1.0.2-staging-45-20200624010805.pax"
     },
     "org.zowe.explorer-mvs": {
-      "pattern": "libs-snapshot-local/org/zowe/explorer-mvs/1.0.2-STAGING/explorer-mvs-1.0.2-staging-69-20200624144504.pax"
+      "artifact": "libs-snapshot-local/org/zowe/explorer-mvs/1.0.2-STAGING/explorer-mvs-1.0.2-staging-69-20200624144504.pax"
     },
     "org.zowe.explorer-uss": {
-      "pattern": "libs-snapshot-local/org/zowe/explorer-uss/1.0.3-STAGING/explorer-uss-1.0.3-staging-30-20200624190251.pax"
+      "artifact": "libs-snapshot-local/org/zowe/explorer-uss/1.0.3-STAGING/explorer-uss-1.0.3-staging-30-20200624190251.pax"
     },
     "org.zowe.apiml.sdk.zowe-install": {
        "version": "~1.14.0-SNAPSHOT",
