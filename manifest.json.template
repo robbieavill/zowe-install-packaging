@@ -64,7 +64,7 @@
       "explode": "true"
     },
     "org.zowe.explorer-jes": {
-      "version": "~1.0.0-STAGING"
+      "version": "~1.0.3-USERS-STEVENH-ZLUX-500"
     },
     "org.zowe.explorer-mvs": {
       "version": "~1.0.0-STAGING"
