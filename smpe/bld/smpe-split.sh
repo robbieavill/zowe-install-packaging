@@ -437,6 +437,8 @@ _cmd --save $dHist echo
 
 # trim delta log to preserve space (cut oldest delta until limit met)
 test "$debug" && echo "$(wc -l < $dHist) ?gt $maxDeltaLines"
+echo "$dHist contents..."
+cat $dHist
 while test $(wc -l < $dHist) -gt $maxDeltaLines
 do
   # document what we are removing
