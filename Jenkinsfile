@@ -117,7 +117,7 @@ sed -e 's#{BUILD_BRANCH}#${env.BRANCH_NAME}#g' \
     },
     allowMissingJunit : true
   )
-
+/*
   pipeline.packaging(
     name          : "zowe",
     timeout       : [time: 90, unit: 'MINUTES'],
@@ -150,7 +150,7 @@ sed -e 's#{BUILD_BRANCH}#${env.BRANCH_NAME}#g' \
       '.pax/smpe-build-logs.pax.Z',
       '.pax/AZWE*'
     ]
-  )
+  )*/
 
   pipeline.publish(
     name                      : "API Definitions",
