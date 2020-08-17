@@ -156,6 +156,7 @@ sed -e 's#{BUILD_BRANCH}#${env.BRANCH_NAME}#g' \
     name                      : "API Definitions",
     operation                 : {
       sh "echo `curl https://localhost:7554`"
+      sh "echo `curl http://localhost:7554`"
     }
   )
 
