@@ -155,7 +155,7 @@ sed -e 's#{BUILD_BRANCH}#${env.BRANCH_NAME}#g' \
   pipeline.publish(
     name                      : "API Definitions",
     operation                 : {
-      sh "echo here"
+      sh "echo here: ${SSH_HOST} ${ZOWE_API_MEDIATION_GATEWAY_HTTP_PORT}"
     }
   )
 
