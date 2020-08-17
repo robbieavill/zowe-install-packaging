@@ -155,7 +155,7 @@ sed -e 's#{BUILD_BRANCH}#${env.BRANCH_NAME}#g' \
   pipeline.publish(
     name                      : "API Definitions",
     operation                 : {
-      sh "echo here: $(curl https://localhost:10010)"
+      sh "echo here: `curl https://localhost:10010`"
     }
   )
 
