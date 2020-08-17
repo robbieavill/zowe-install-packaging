@@ -152,7 +152,7 @@ sed -e 's#{BUILD_BRANCH}#${env.BRANCH_NAME}#g' \
     ]
   )
 
-  pipeline.document(
+  pipeline.publish(
     name                      : "API Definitions",
     operation                 : {
       sh "echo here"
