@@ -155,9 +155,7 @@ sed -e 's#{BUILD_BRANCH}#${env.BRANCH_NAME}#g' \
   pipeline.publish(
     name                      : "API Definitions",
     operation                 : {
-      sh "echo ${env.JOB_NAME}"
-      sh "echo ${env.SSH_HOST}"
-      sh "echo ${env}"
+      echo sh(returnStdout: true, script: 'env')
       sh "echo `curl https://localhost:7554`"
       sh "echo `curl http://localhost:7554`"
     }
