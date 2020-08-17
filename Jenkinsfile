@@ -156,8 +156,13 @@ sed -e 's#{BUILD_BRANCH}#${env.BRANCH_NAME}#g' \
     name                      : "API Definitions",
     operation                 : {
       echo sh(returnStdout: true, script: 'env')
-      sh "echo `curl https://localhost:7554`"
-      sh "echo `curl http://localhost:7554`"
+      sh "echo `curl https://wlag.svl.ib.com:7554`"
+      sh "echo `curl https://tivlp46.svl.ibm.com:7554`"
+      sh "echo `curl https://tvt4188.svl.ibm.com:7554`"
+      sh "echo `curl https://tvt5064.svl.ib.com:7554`"
+      sh "echo `curl https://tvt6019.svl.ib.com:7554`"
+      sh "echo `curl https://tvt6080.svl.ib.com:7554`"
+      sh "echo `curl https://vm30051.svl.ibm.com:7554`"
     }
   )
 
