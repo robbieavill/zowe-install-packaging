@@ -152,5 +152,12 @@ sed -e 's#{BUILD_BRANCH}#${env.BRANCH_NAME}#g' \
     ]
   )
 
+  pipeline.document(
+    name                      : "API Definitions",
+    operation                 : {
+      sh "echo here"
+    }
+  )
+
   pipeline.end()
 }
